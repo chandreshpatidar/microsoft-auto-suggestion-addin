@@ -17,12 +17,27 @@
 
 <script>
     Office.onReady((info) => {
-        console.log("=================Ready==============")
+        console.log("=================Ready==============", info)
         // Check that we loaded into Word
         if (info.host === Office.HostType.Word) {
             document.getElementById("helloButton").onclick = sayHello;
+            window.addEventListener('keyup', getCursorPosition)
+
         }
     });
+
+    function getCursorPosition(e) {
+        return Word.run(async (context) => {
+            let cursorOrSelection = context.document.getSelection();
+            context.load(cursorOrSelection);
+
+            console.log({ cursorOrSelection, end: Word.InsertLocation.end, e })
+
+            await context.sync();
+            cursorOrSelection.insertText("Important text to insert", Word.InsertLocation.end);
+            await context.sync();
+        });
+    }
 
     function sayHello() {
         return Word.run((context) => {
