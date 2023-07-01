@@ -38,10 +38,10 @@
         return Word.run(async (context) => {
             console.log("==========start getCursorPosition Word.run============== ")
 
-            const cursorOrSelection = context.document.getSelection();
+            // const cursorOrSelection = context.document.getSelection();
             const body = context.document.body
 
-            body.insertHtml('<span style="color:gray">Testing text</span>', cursorOrSelection);
+            body.insertHtml('<span style="color:gray">Testing text</span>', Word.InsertLocation.replace);
 
             // cursorOrSelection.insertText("Important text to insert", Word.InsertLocation.end);
             await context.sync();
