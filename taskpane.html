@@ -21,17 +21,12 @@
         // Check that we loaded into Word
         if (info.host === Office.HostType.Word) {
             document.getElementById("helloButton").onclick = sayHello;
-            console.log("============above keyup=========")
-
-            document.addEventListener('keyup', function () {
-                console.log("============keyup=========")
-            })
-            console.log("============below keyup=========")
 
             const doc = Office.context.document;
             console.log({ doc })
             doc.addHandlerAsync(Office.EventType.DocumentSelectionChanged, function (eventArgs) {
                 // do something when the selection changes
+                getCursorPosition(eventArgs)
                 console.log({ eventArgs })
             });
 
@@ -39,8 +34,12 @@
     });
 
     function getCursorPosition(e) {
+        console.log("==========start getCursorPosition============== ")
         return Word.run(async (context) => {
+            console.log("==========start getCursorPosition Word.run============== ")
+
             let cursorOrSelection = context.document.getSelection();
+            console.log("==========cursorOrSelection============== ", cursorOrSelection)
             context.load(cursorOrSelection);
 
             console.log({ cursorOrSelection, end: Word.InsertLocation.end, e })
