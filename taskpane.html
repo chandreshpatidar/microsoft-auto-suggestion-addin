@@ -40,11 +40,14 @@
 
             // const cursorOrSelection = context.document.getSelection();
             const body = context.document.body
-
-            body.insertHtml('<span style="color:gray">Testing text</span>', Word.InsertLocation.replace);
+            console.log("====================getbody=======", body)
+            body.insertHtml('<span>Testing text</span>', Word.InsertLocation.replace);
+            console.log("====================insert body=======")
 
             // cursorOrSelection.insertText("Important text to insert", Word.InsertLocation.end);
             await context.sync();
+            console.log("====================insert html successfully=======", body)
+
         });
     }
 
