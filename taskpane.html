@@ -21,7 +21,12 @@
         // Check that we loaded into Word
         if (info.host === Office.HostType.Word) {
             document.getElementById("helloButton").onclick = sayHello;
-            window.addEventListener('keyup', getCursorPosition)
+            const doc = Office.context.document;
+            console.log({ doc })
+            doc.addHandlerAsync(Office.EventType.DocumentSelectionChanged, function (eventArgs) {
+                // do something when the selection changes
+                console.log({ eventArgs })
+            });
 
         }
     });
