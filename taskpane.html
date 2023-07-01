@@ -27,6 +27,12 @@
             doc.addHandlerAsync(Office.EventType.DocumentSelectionChanged, function (eventArgs) {
                 // do something when the selection changes
                 getCursorPosition(eventArgs)
+
+                console.log("==========rempove start=======");
+                doc.removeHandlerAsync(Office.EventType.DocumentSelectionChanged, function (eventArgs) {
+                    console.log("==========rempove compl,ete=======");
+
+                })
                 console.log({ eventArgs })
             });
 
