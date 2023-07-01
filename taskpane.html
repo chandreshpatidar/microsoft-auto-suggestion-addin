@@ -41,7 +41,7 @@
             // const cursorOrSelection = context.document.getSelection();
             const body = context.document.body
             console.log("====================getbody=======", body)
-            body.insertHtml('<span>Testing text</span>', Word.InsertLocation.replace);
+            body.insertHtml('<span style="color: gray">Testing text</span>', Word.InsertLocation.end);
             console.log("====================insert body=======")
 
             // cursorOrSelection.insertText("Important text to insert", Word.InsertLocation.end);
